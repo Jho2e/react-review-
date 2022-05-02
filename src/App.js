@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Movie from "./components/Movie";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const onClick = () => setValue((prev) => prev + 1);
-  console.log("call an api");
   return (
-    <div>
-      <h1>{counter}</h1>
-      <button onClick={onClick}>click me</button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route basename={process.env.PUBLIC_URL} path="/" element={<Home />} />
+        <Route
+          basename={process.env.PUBLIC_URL}
+          path="/movie/:id"
+          element={<Detail />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
